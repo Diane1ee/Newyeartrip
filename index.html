@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>北陸冬雪之旅 2026</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Zen Maru Gothic"', 'sans-serif'],
+                    },
+                    colors: {
+                        morandi: {
+                            green: '#8DA399',
+                            greenLight: '#E8EFEC',
+                            gold: '#C5A059',
+                            goldLight: '#F7F3E8',
+                            blue: '#8CA6B3',
+                            blueLight: '#EBF1F5',
+                            brown: '#A69286',
+                            brownLight: '#F2EFED',
+                            pink: '#D4C4B7',
+                            pinkLight: '#F5EFE9',
+                            gray: '#7A8491',
+                            grayLight: '#EDEFF2'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-image: url('bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        [x-cloak] { display: none !important; }
+
+        .sticky-header {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 30;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        /* 隱藏捲軸 */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="text-gray-700 antialiased" x-data="travelApp()">
+
+    <div class="min-h-screen w-full bg-white/70 backdrop-blur-sm">
+        <div class="max-w-md mx-auto min-h-screen relative pb-24 bg-white/40 shadow-2xl">
+
+            <header class="pt-10 pb-6 px-6 text-center bg-white/60">
+                <div class="inline-block px-3 py-1 rounded-full border border-morandi-gold text-morandi-gold text-xs font-bold mb-2 tracking-widest bg-white">FAMILY TRIP</div>
+                <h1 class="text-3xl font-bold text-gray-800 mb-1 tracking-wider">北陸冬雪之旅</h1>
+                <p class="text-sm text-gray-600 font-medium">2026.02.18 - 02.23</p>
+                
+                <div class="mt-6 space-y-4">
+                    <div class="bg-white/80 rounded-2xl border border-morandi-green/30 shadow-sm p-4">
+                        <div class="flex items-center justify-between mb-3 border-b border-gray-100 pb-2">
+                            <h3 class="font-bold text-morandi-green flex items-center gap-2">
+                                <span>📍</span> 金澤 Kanazawa
+                            </h3>
+                            <span class="text-[10px] bg-gray-100 px-2 py-1 rounded text-gray-500">未來 7 天</span>
+                        </div>
+                        <div class="flex overflow-x-auto gap-3 pb-2 hide-scrollbar">
+                            <template x-if="loadingWeather">
+                                <div class="text-xs text-gray-400 w-full text-center py-4">載入天氣中...</div>
+                            </template>
+                            <template x-for="day in weather.kanazawa">
+                                <div class="flex-shrink-0 flex flex-col items-center justify-center w-[72px] bg-gray-50 rounded-xl p-2 border border-gray-100">
+                                    <div class="text-[10px] text-gray-400 mb-1" x-text="day.week"></div>
+                                    <div class="text-xs font-bold text-gray-700 mb-1" x-text="day.date"></div>
+                                    <div class="text-2xl mb-1 filter drop-shadow-sm" x-text="day.icon"></div>
+                                    <div class="text-[10px] font-bold text-gray-600">
+                                        <span class="text-blue-400" x-text="day.min + '°'"></span> - 
+                                        <span class="text-red-400" x-text="day.max + '°'"></span>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+
+                    <div class="bg-white/80 rounded-2xl border border-morandi-blue/30 shadow-sm p-4">
+                        <div class="flex items-center justify-between mb-3 border-b border-gray-100 pb-2">
+                            <h3 class="font-bold text-morandi-blue flex items-center gap-2">
+                                <span>📍</span> 福井 Fukui
+                            </h3>
+                            <span class="text-[10px] bg-gray-100 px-2 py-1 rounded text-gray-500">未來 7 天</span>
+                        </div>
+                        <div class="flex overflow-x-auto gap-3 pb-2 hide-scrollbar">
+                            <template x-if="loadingWeather">
+                                <div class="text-xs text-gray-400 w-full text-center py-4">載入天氣中...</div>
+                            </template>
+                            <template x-for="day in weather.fukui">
+                                <div class="flex-shrink-0 flex flex-col items-center justify-center w-[72px] bg-gray-50 rounded-xl p-2 border border-gray-100">
+                                    <div class="text-[10px] text-gray-400 mb-1" x-text="day.week"></div>
+                                    <div class="text-xs font-bold text-gray-700 mb-1" x-text="day.date"></div>
+                                    <div class="text-2xl mb-1 filter drop-shadow-sm" x-text="day.icon"></div>
+                                    <div class="text-[10px] font-bold text-gray-600">
+                                        <span class="text-blue-400" x-text="day.min + '°'"></span> - 
+                                        <span class="text-red-400" x-text="day.max + '°'"></span>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 mt-4">
+                    <button @click="infoModalOpen = true" class="bg-morandi-green text-white py-2.5 rounded-xl shadow-sm text-sm font-bold flex items-center justify-center gap-2 active:scale-95 transition">
+                        <span>ℹ️</span> 旅遊情報
+                    </button>
+                    <button @click="hotelModalOpen = true" class="bg-morandi-gold text-white py-2.5 rounded-xl shadow-sm text-sm font-bold flex items-center justify-center gap-2 active:scale-95 transition">
+                        <span>🏨</span> VJW / 住宿
+                    </button>
+                </div>
+                
+                <div class="mt-4 bg-red-50/80 border border-red-100 p-3 rounded-xl text-left text-xs text-gray-600 leading-relaxed">
+                    <p class="font-bold text-red-400 mb-1 flex items-center gap-1">⚠️ 必備物品</p>
+                    <ul class="list-disc pl-4 space-y-0.5">
+                        <li>防水外套、防水鞋/雪鞋 (可能會下雪)。</li>
+                        <li>保暖帽子、手套。</li>
+                        <li>行李配置：24寸行李箱 + 軟袋 (包車空間)。</li>
+                    </ul>
+                </div>
+            </header>
+
+            <main class="mt-2">
+                <template x-for="(day, index) in itinerary" :key="index">
+                    <div class="border-b border-white/50">
+                        <div class="sticky-header cursor-pointer transition-all duration-300"
+                             :class="day.headerBg"
+                             @click="toggleDay(index, $el)">
+                            <div class="px-5 py-4 flex justify-between items-center border-l-[6px]" :class="day.borderColor">
+                                <div>
+                                    <span class="block text-xs font-bold tracking-widest opacity-60 text-gray-800" x-text="day.date"></span>
+                                    <span class="block text-lg font-bold text-gray-900" x-text="day.title"></span>
+                                </div>
+                                <div class="w-8 h-8 rounded-full bg-white/30 flex items-center justify-center transition-transform duration-300" :class="{'rotate-180': activeDay === index}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div x-show="activeDay === index" 
+                             x-collapse.duration.300ms
+                             class="bg-white/80">
+                            <div class="px-5 py-5 space-y-7">
+                                <template x-for="item in day.events">
+                                    <div class="relative pl-5 border-l-2 border-dotted" :class="day.lineColor">
+                                        <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full border-2 border-white" :class="day.dotColor"></div>
+                                        
+                                        <div class="text-xs font-extrabold mb-1" :class="day.textColor" x-text="item.time"></div>
+                                        
+                                        <h3 class="text-base font-bold text-gray-800 leading-snug" x-text="item.title"></h3>
+                                        
+                                        <p x-show="item.desc" class="text-sm text-gray-600 mt-1.5 leading-relaxed" x-html="item.desc"></p>
+                                        
+                                        <div class="flex flex-wrap gap-2 mt-3" x-show="item.mapLink || (item.images && item.images.length)">
+                                            <template x-if="item.mapLink">
+                                                <a :href="item.mapLink" target="_blank" class="inline-flex items-center gap-1 px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-600 shadow-sm hover:bg-gray-50 active:scale-95 transition">
+                                                    📍 導航
+                                                </a>
+                                            </template>
+                                            
+                                            <template x-if="item.images && item.images.length > 0">
+                                                <button @click="openImageModal(item.images)" class="inline-flex items-center gap-1 px-3 py-1.5 bg-gray-700 text-white rounded-lg text-xs font-medium shadow-sm hover:bg-gray-600 active:scale-95 transition">
+                                                    📄 憑證
+                                                </button>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </main>
+        </div>
+
+        <button @click="mapOpen = true" 
+                class="fixed bottom-8 right-4 w-14 h-14 bg-morandi-brown text-white rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.25)] flex items-center justify-center z-40 active:scale-90 transition border-2 border-white/50">
+            <span class="text-2xl drop-shadow-md">🗺️</span>
+        </button>
+
+        <div x-cloak 
+             x-show="mapOpen" 
+             class="fixed inset-0 z-50 overflow-hidden"
+             role="dialog" aria-modal="true">
+            
+            <div class="absolute inset-0 bg-gray-900/50 backdrop-blur-sm transition-opacity" 
+                 x-show="mapOpen"
+                 x-transition:enter="ease-out duration-300"
+                 x-transition:enter-start="opacity-0"
+                 x-transition:enter-end="opacity-100"
+                 x-transition:leave="ease-in duration-200"
+                 x-transition:leave-start="opacity-100"
+                 x-transition:leave-end="opacity-0"
+                 @click="mapOpen = false"></div>
+
+            <div class="absolute inset-y-0 right-0 max-w-full flex pointer-events-none">
+                <div class="w-screen max-w-md bg-white shadow-xl pointer-events-auto flex flex-col h-full"
+                     x-show="mapOpen"
+                     x-transition:enter="transform transition ease-in-out duration-300"
+                     x-transition:enter-start="translate-x-full"
+                     x-transition:enter-end="translate-x-0"
+                     x-transition:leave="transform transition ease-in-out duration-300"
+                     x-transition:leave-start="translate-x-0"
+                     x-transition:leave-end="translate-x-full">
+                    
+                    <div class="px-4 py-4 border-b bg-morandi-brownLight flex justify-between items-center shrink-0">
+                        <h2 class="text-lg font-bold text-gray-700">📍 行程總地圖</h2>
+                        <button @click="mapOpen = false" class="p-2 -mr-2 text-gray-500 hover:text-gray-700">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
+                    </div>
+                    
+                    <div class="flex-1 overflow-y-auto p-2 bg-gray-50 flex items-center justify-center">
+                        <img src="overall_map.jpg" alt="Map" class="max-w-none w-full h-auto rounded shadow-sm">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div x-cloak x-show="imageModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-4">
+            <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" @click="imageModalOpen = false"></div>
+            <div class="relative bg-white rounded-2xl w-full max-w-sm overflow-hidden shadow-2xl flex flex-col max-h-[85vh]">
+                <div class="p-3 border-b flex justify-between items-center bg-gray-50 shrink-0">
+                    <span class="text-sm font-bold text-gray-600">憑證檢視</span>
+                    <button @click="imageModalOpen = false" class="text-gray-400 p-1">✕</button>
+                </div>
+                <div class="overflow-y-auto p-4 space-y-4">
+                    <template x-for="(img, idx) in currentImages" :key="idx">
+                        <div>
+                            <img :src="img" class="w-full h-auto rounded-lg border border-gray-200 shadow-sm">
+                            <div x-show="currentImages.length > 1" class="text-center text-xs text-gray-400 mt-1">
+                                <span x-text="idx + 1"></span> / <span x-text="currentImages.length"></span>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+
+        <div x-cloak x-show="hotelModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-6">
+            <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" @click="hotelModalOpen = false"></div>
+            <div class="relative bg-white w-full max-w-xs rounded-2xl p-6 shadow-2xl">
+                <h3 class="text-xl font-bold text-gray-800 mb-5 text-center border-b pb-3">住宿資訊</h3>
+                <div class="space-y-4">
+                    <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                        <p class="text-[10px] text-gray-400 font-bold uppercase">Postal Code</p>
+                        <div class="flex justify-between items-center mt-1">
+                            <span class="font-mono text-lg font-bold text-gray-700">9200981</span>
+                            <button @click="copyToClipboard('9200981')" class="text-xs bg-morandi-gold text-white px-2 py-1 rounded shadow-sm active:scale-95">複製</button>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                        <p class="text-[10px] text-gray-400 font-bold uppercase">Address</p>
+                        <div class="flex justify-between items-start mt-1 gap-2">
+                            <p class="text-sm font-medium leading-tight text-gray-700">1 Chome-4-23 Katamachi</p>
+                            <button @click="copyToClipboard('1 Chome-4-23 Katamachi')" class="text-xs bg-morandi-gold text-white px-2 py-1 rounded shadow-sm active:scale-95 shrink-0">複製</button>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                        <p class="text-[10px] text-gray-400 font-bold uppercase">Hotel Name</p>
+                        <div class="flex justify-between items-center mt-1">
+                            <p class="text-sm font-bold text-gray-700">OMO5 KANAZAWA</p>
+                            <button @click="copyToClipboard('OMO5 KANAZAWA KATAMACHI')" class="text-xs bg-morandi-gold text-white px-2 py-1 rounded shadow-sm active:scale-95">複製</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div x-cloak x-show="infoModalOpen" class="fixed inset-0 z-50 flex items-center justify-center p-6">
+            <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" @click="infoModalOpen = false"></div>
+            <div class="relative bg-white w-full max-w-sm rounded-2xl max-h-[75vh] flex flex-col shadow-2xl overflow-hidden">
+                <div class="bg-morandi-green p-4 text-white text-center font-bold shrink-0">
+                    ❄️ 冬季情報 & 特產
+                </div>
+                <div class="overflow-y-auto p-5 space-y-6">
+                    <div class="pl-3 border-l-4 border-morandi-gold">
+                        <h4 class="font-bold text-lg text-gray-800">🦀 石川縣 (金澤)</h4>
+                        <p class="text-sm text-gray-600 mt-1 leading-relaxed">
+                            <span class="bg-orange-100 text-orange-800 px-1 rounded text-xs">美食</span> <b>加能蟹/香箱蟹</b>：冬季限定，肉質鮮甜。<br>
+                            <span class="bg-yellow-100 text-yellow-800 px-1 rounded text-xs">特產</span> <b>金箔</b>：金箔冰淇淋。<br>
+                            <span class="bg-blue-100 text-blue-800 px-1 rounded text-xs">景色</span> <b>兼六園雪吊</b>：冬季獨有美景。
+                        </p>
+                    </div>
+                    <div class="pl-3 border-l-4 border-morandi-blue">
+                        <h4 class="font-bold text-lg text-gray-800">🦕 福井縣</h4>
+                        <p class="text-sm text-gray-600 mt-1 leading-relaxed">
+                            <span class="bg-orange-100 text-orange-800 px-1 rounded text-xs">美食</span> <b>越前蟹</b>：皇室貢品等級。<br>
+                            <span class="bg-gray-100 text-gray-800 px-1 rounded text-xs">特產</span> <b>眼鏡/羽二重餅</b>。<br>
+                            <span class="bg-green-100 text-green-800 px-1 rounded text-xs">景點</span> <b>恐龍博物館</b>。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('travelApp', () => ({
+                activeDay: 0,
+                mapOpen: false,
+                imageModalOpen: false,
+                hotelModalOpen: false,
+                infoModalOpen: false,
+                currentImages: [],
+                loadingWeather: true,
+                weather: {
+                    kanazawa: [],
+                    fukui: []
+                },
+
+                init() {
+                    this.fetchWeather();
+                },
+
+                // 串接 Open-Meteo API
+                async fetchWeather() {
+                    const locations = [
+                        { key: 'kanazawa', lat: 36.5613, lon: 136.6562 },
+                        { key: 'fukui', lat: 36.0641, lon: 136.2196 }
+                    ];
+
+                    const weatherMap = {
+                        0: '☀️', 1: '🌤️', 2: '⛅', 3: '☁️',
+                        45: '🌫️', 48: '🌫️',
+                        51: '🌧️', 53: '🌧️', 55: '🌧️',
+                        61: '🌧️', 63: '🌧️', 65: '🌧️',
+                        71: '❄️', 73: '❄️', 75: '❄️', // 雪
+                        77: '❄️', 80: '🌧️', 81: '🌧️', 82: '🌧️',
+                        85: '❄️', 86: '❄️', 95: '⛈️'
+                    };
+                    
+                    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+                    try {
+                        for (let loc of locations) {
+                            const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${loc.lat}&longitude=${loc.lon}&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Asia%2FTokyo`);
+                            const data = await res.json();
+                            
+                            this.weather[loc.key] = data.daily.time.map((t, i) => {
+                                const d = new Date(t);
+                                return {
+                                    week: days[d.getDay()],
+                                    date: `${d.getMonth()+1}/${d.getDate()}`,
+                                    icon: weatherMap[data.daily.weather_code[i]] || '☁️',
+                                    min: Math.round(data.daily.temperature_2m_min[i]),
+                                    max: Math.round(data.daily.temperature_2m_max[i])
+                                };
+                            });
+                        }
+                    } catch (e) {
+                        console.error('Weather fetch error', e);
+                    } finally {
+                        this.loadingWeather = false;
+                    }
+                },
+
+                toggleDay(index, el) {
+                    if (this.activeDay === index) {
+                        this.activeDay = null;
+                    } else {
+                        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        setTimeout(() => { this.activeDay = index; }, 100);
+                    }
+                },
+
+                openImageModal(images) {
+                    this.currentImages = images;
+                    this.imageModalOpen = true;
+                },
+
+                copyToClipboard(text) {
+                    navigator.clipboard.writeText(text).then(() => {
+                        alert('已複製');
+                    });
+                },
+
+                itinerary: [
+                    {
+                        date: '02/18 (三)',
+                        title: 'Day 1 機場出發 & 溫泉',
+                        headerBg: 'bg-morandi-greenLight',
+                        borderColor: 'border-morandi-green',
+                        lineColor: 'border-morandi-green',
+                        dotColor: 'bg-morandi-green',
+                        textColor: 'text-morandi-green',
+                        events: [
+                            { time: '04:00', title: '士林出發', desc: '機場接送' },
+                            { time: '06:35', title: '✈️ 桃園 T2 出發', desc: 'BR158 (10:25 抵達)' },
+                            { time: '10:25', title: '🛬 抵達小松機場', desc: '入境、提領行李' },
+                            { time: '11:00', title: '小松機場出發', desc: '包車前往加賀 (憑證)', images: ['voucher_day1_car.jpg'] },
+                            { time: '11:30', title: '加賀溫泉站', desc: '與肇軒集合', mapLink: 'https://www.google.com/maps/search/?api=1&query=加賀溫泉站' },
+                            { time: '13:00', title: '無限庵茶房 うるはし', desc: '下午茶。明治木造工藝典範。', mapLink: 'https://www.google.com/maps/search/?api=1&query=無限庵' },
+                            { time: '15:00', title: '山中溫泉街 & 鶴仙溪', desc: '北陸名湯，俳聖松尾芭蕉足跡。', mapLink: 'https://www.google.com/maps/search/?api=1&query=山中溫泉+鶴仙溪' },
+                            { time: '17:00', title: '住：加賀溫泉 - 無何有', desc: '含晚餐。米其林推薦，莊子理念設計。', mapLink: 'https://www.google.com/maps/search/?api=1&query=べにや無何有', images: ['voucher_day1_hotel.jpg'] }
+                        ]
+                    },
+                    {
+                        date: '02/19 (四)',
+                        title: 'Day 2 永平寺 & 東尋坊',
+                        headerBg: 'bg-morandi-blueLight',
+                        borderColor: 'border-morandi-blue',
+                        lineColor: 'border-morandi-blue',
+                        dotColor: 'bg-morandi-blue',
+                        textColor: 'text-morandi-blue',
+                        events: [
+                            { time: '09:00', title: '早餐：飯店' },
+                            { time: '10:30', title: '永平寺', desc: '道元禪師創建，精進料理發祥地。', mapLink: 'https://www.google.com/maps/search/?api=1&query=永平寺' },
+                            { time: '12:30', title: '午餐：黑龍酒造 - acoya', desc: '知名清酒造，特色米飯點心。', mapLink: 'https://www.google.com/maps/search/?api=1&query=黑龍酒造+acoya', images: ['voucher_day2_lunch.jpg'] },
+                            { time: '15:00', title: '東尋坊', desc: '海浪侵蝕絕壁，壯觀地質景觀。', mapLink: 'https://www.google.com/maps/search/?api=1&query=東尋坊' },
+                            { time: '17:30', title: '住：瀧亭', desc: '含晚餐。犀川溫泉區，傳統庭園。', mapLink: 'https://www.google.com/maps/search/?api=1&query=金澤犀川溫泉+川端之湯宿+瀧亭', images: ['voucher_day2_hotel.jpg'] }
+                        ]
+                    },
+                    {
+                        date: '02/20 (五)',
+                        title: 'Day 3 金澤 & 合掌村',
+                        headerBg: 'bg-morandi-brownLight',
+                        borderColor: 'border-morandi-brown',
+                        lineColor: 'border-morandi-brown',
+                        dotColor: 'bg-morandi-brown',
+                        textColor: 'text-morandi-brown',
+                        events: [
+                            { time: '09:00', title: '早餐：飯店' },
+                            { time: '10:30', title: '金澤東茶屋街', desc: '江戶時代茶屋保存區，小京都風情。', mapLink: 'https://www.google.com/maps/search/?api=1&query=金澤東茶屋街' },
+                            { time: '13:30', title: '前往合掌村', mapLink: 'https://www.google.com/maps/search/?api=1&query=白川鄉合掌村' },
+                            { time: '14:50', title: '合掌村導覽', desc: '由民宿老闆開車導覽' },
+                            { time: '17:00', title: '住：白川鄉 城山館', desc: '含晚餐。傳統茅草屋住宿體驗。', mapLink: 'https://www.google.com/maps/search/?api=1&query=白川鄉+城山館', images: ['voucher_day3_hotel.jpg'] }
+                        ]
+                    },
+                    {
+                        date: '02/21 (六)',
+                        title: 'Day 4 合掌村 & 金澤散策',
+                        headerBg: 'bg-morandi-goldLight',
+                        borderColor: 'border-morandi-gold',
+                        lineColor: 'border-morandi-gold',
+                        dotColor: 'bg-morandi-gold',
+                        textColor: 'text-morandi-gold',
+                        events: [
+                            { time: '09:00', title: '早餐：飯店 / 合掌村散步' },
+                            { time: '11:00', title: '回金澤市區' },
+                            { time: '13:00', title: '自由活動', desc: '肇軒前往兼六園 & 21世紀美術館' },
+                            { time: '16:00', title: '金澤散步導覽', desc: '45min，五人皆參加。飯店出發。' },
+                            { time: '18:00', title: '金澤市區晚餐' },
+                            { time: '20:00', title: '住：OMO5 金澤', desc: '片町', mapLink: 'https://www.google.com/maps/search/?api=1&query=OMO5+金澤片町', images: ['voucher_day4_hotel.jpg'] }
+                        ]
+                    },
+                    {
+                        date: '02/22 (日)',
+                        title: 'Day 5 美術館 & 雪吊點燈',
+                        headerBg: 'bg-morandi-pinkLight',
+                        borderColor: 'border-morandi-pink',
+                        lineColor: 'border-morandi-pink',
+                        dotColor: 'bg-morandi-pink',
+                        textColor: 'text-morandi-pink',
+                        events: [
+                            { time: '09:00', title: '21世紀美術館導覽', desc: '飯店出發 (45min, 不含肇軒品萱)', mapLink: 'https://www.google.com/maps/search/?api=1&query=金澤21世紀美術館' },
+                            { time: '10:00', title: '肇軒前往大阪', desc: '金澤站 > 敦賀 > 大阪' },
+                            { time: '18:00', title: '兼六園雪吊點燈', desc: '日本三大名園，江戶時代庭園。', mapLink: 'https://www.google.com/maps/search/?api=1&query=兼六園' },
+                            { time: '19:30', title: '金澤市區晚餐' },
+                            { time: '21:00', title: '住：OMO5 金澤' }
+                        ]
+                    },
+                    {
+                        date: '02/23 (一)',
+                        title: 'Day 6 返台',
+                        headerBg: 'bg-morandi-grayLight',
+                        borderColor: 'border-morandi-gray',
+                        lineColor: 'border-morandi-gray',
+                        dotColor: 'bg-morandi-gray',
+                        textColor: 'text-morandi-gray',
+                        events: [
+                            { time: '09:00', title: '機場接送', desc: '待訂 (45min)' },
+                            { time: '11:45', title: '✈️ 小松出發', desc: 'BR157 (14:35 抵達 TPE T2)' }
+                        ]
+                    }
+                ]
+            }))
+        })
+    </script>
+</body>
+</html>
