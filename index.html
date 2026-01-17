@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>北陸冬雪之旅 2026</title>
+    <title>過年來踩雪 2026</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -48,6 +48,7 @@
             background-position: center;
             background-attachment: fixed;
             -webkit-tap-highlight-color: transparent;
+            font-size: 16px; /* 設定基本字體大小 */
         }
         
         [x-cloak] { display: none !important; }
@@ -75,58 +76,58 @@
 
     <div class="min-h-screen w-full bg-white/70 transition-all duration-300"> 
          
-        <div class="max-w-md mx-auto min-h-screen relative pb-32 bg-white/40 shadow-2xl">
+        <div class="max-w-md mx-auto min-h-screen relative pb-36 bg-white/40 shadow-2xl">
 
             <header class="pt-12 pb-6 px-6 text-center bg-white/60">
-                <div class="inline-block px-3 py-1 rounded-full border border-morandi-gold text-morandi-gold text-xs font-bold mb-2 tracking-widest bg-white">FAMILY TRIP</div>
-                <h1 class="text-3xl font-bold text-gray-800 mb-1 tracking-wider">北陸冬雪之旅</h1>
-                <p class="text-sm text-gray-600 font-medium">2026.02.18 - 02.23</p>
+                <div class="inline-block px-4 py-1.5 rounded-full border border-morandi-gold text-morandi-gold text-sm font-bold mb-3 tracking-widest bg-white">FAMILY TRIP</div>
+                <h1 class="text-4xl font-extrabold text-gray-800 mb-2 tracking-wider">過年來踩雪</h1>
+                <p class="text-base text-gray-600 font-bold">2026.02.18 - 02.23</p>
                 
-                <div class="mt-6 space-y-4">
-                    <div class="bg-white/90 rounded-2xl border border-morandi-green/30 shadow-sm p-4">
-                        <div class="flex items-center justify-between mb-3 border-b border-gray-100 pb-2">
-                            <h3 class="font-bold text-morandi-green flex items-center gap-2">
+                <div class="mt-8 space-y-5">
+                    <div class="bg-white/90 rounded-2xl border border-morandi-green/30 shadow-sm p-5">
+                        <div class="flex items-center justify-between mb-4 border-b border-gray-100 pb-3">
+                            <h3 class="text-xl font-bold text-morandi-green flex items-center gap-2">
                                 <span>📍</span> 金澤 Kanazawa
                             </h3>
-                            <span class="text-[10px] bg-gray-100 px-2 py-1 rounded text-gray-500">未來 7 天</span>
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded text-gray-500 font-medium">未來 7 天</span>
                         </div>
                         <div class="flex overflow-x-auto gap-3 pb-2 hide-scrollbar">
                             <template x-if="loadingWeather">
-                                <div class="text-xs text-gray-400 w-full text-center py-4">載入天氣中...</div>
+                                <div class="text-sm text-gray-400 w-full text-center py-4">載入天氣中...</div>
                             </template>
                             <template x-for="day in weather.kanazawa">
-                                <div class="flex-shrink-0 flex flex-col items-center justify-center w-[72px] bg-gray-50 rounded-xl p-2 border border-gray-100">
-                                    <div class="text-[10px] text-gray-400 mb-1" x-text="day.week"></div>
-                                    <div class="text-xs font-bold text-gray-700 mb-1" x-text="day.date"></div>
-                                    <div class="text-2xl mb-1 filter drop-shadow-sm" x-text="day.icon"></div>
-                                    <div class="text-[10px] font-bold text-gray-600">
-                                        <span class="text-blue-400" x-text="day.min + '°'"></span> - 
-                                        <span class="text-red-400" x-text="day.max + '°'"></span>
+                                <div class="flex-shrink-0 flex flex-col items-center justify-center w-[80px] bg-gray-50 rounded-xl p-2 border border-gray-100">
+                                    <div class="text-xs text-gray-500 mb-1" x-text="day.week"></div>
+                                    <div class="text-sm font-bold text-gray-800 mb-1" x-text="day.date"></div>
+                                    <div class="text-3xl mb-1 filter drop-shadow-sm" x-text="day.icon"></div>
+                                    <div class="text-xs font-bold text-gray-600">
+                                        <span class="text-blue-500" x-text="day.min + '°'"></span> - 
+                                        <span class="text-red-500" x-text="day.max + '°'"></span>
                                     </div>
                                 </div>
                             </template>
                         </div>
                     </div>
 
-                    <div class="bg-white/90 rounded-2xl border border-morandi-blue/30 shadow-sm p-4">
-                        <div class="flex items-center justify-between mb-3 border-b border-gray-100 pb-2">
-                            <h3 class="font-bold text-morandi-blue flex items-center gap-2">
+                    <div class="bg-white/90 rounded-2xl border border-morandi-blue/30 shadow-sm p-5">
+                        <div class="flex items-center justify-between mb-4 border-b border-gray-100 pb-3">
+                            <h3 class="text-xl font-bold text-morandi-blue flex items-center gap-2">
                                 <span>📍</span> 福井 Fukui
                             </h3>
-                            <span class="text-[10px] bg-gray-100 px-2 py-1 rounded text-gray-500">未來 7 天</span>
+                            <span class="text-xs bg-gray-100 px-2 py-1 rounded text-gray-500 font-medium">未來 7 天</span>
                         </div>
                         <div class="flex overflow-x-auto gap-3 pb-2 hide-scrollbar">
                             <template x-if="loadingWeather">
-                                <div class="text-xs text-gray-400 w-full text-center py-4">載入天氣中...</div>
+                                <div class="text-sm text-gray-400 w-full text-center py-4">載入天氣中...</div>
                             </template>
                             <template x-for="day in weather.fukui">
-                                <div class="flex-shrink-0 flex flex-col items-center justify-center w-[72px] bg-gray-50 rounded-xl p-2 border border-gray-100">
-                                    <div class="text-[10px] text-gray-400 mb-1" x-text="day.week"></div>
-                                    <div class="text-xs font-bold text-gray-700 mb-1" x-text="day.date"></div>
-                                    <div class="text-2xl mb-1 filter drop-shadow-sm" x-text="day.icon"></div>
-                                    <div class="text-[10px] font-bold text-gray-600">
-                                        <span class="text-blue-400" x-text="day.min + '°'"></span> - 
-                                        <span class="text-red-400" x-text="day.max + '°'"></span>
+                                <div class="flex-shrink-0 flex flex-col items-center justify-center w-[80px] bg-gray-50 rounded-xl p-2 border border-gray-100">
+                                    <div class="text-xs text-gray-500 mb-1" x-text="day.week"></div>
+                                    <div class="text-sm font-bold text-gray-800 mb-1" x-text="day.date"></div>
+                                    <div class="text-3xl mb-1 filter drop-shadow-sm" x-text="day.icon"></div>
+                                    <div class="text-xs font-bold text-gray-600">
+                                        <span class="text-blue-500" x-text="day.min + '°'"></span> - 
+                                        <span class="text-red-500" x-text="day.max + '°'"></span>
                                     </div>
                                 </div>
                             </template>
@@ -134,39 +135,39 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-3 mt-4">
-                    <button @click="infoModalOpen = true" class="bg-morandi-green text-white py-3 rounded-xl shadow-sm text-sm font-bold flex items-center justify-center gap-2 active:scale-95 transition">
+                <div class="grid grid-cols-2 gap-4 mt-6">
+                    <button @click="infoModalOpen = true" class="bg-morandi-green text-white py-3.5 rounded-xl shadow-sm text-base font-bold flex items-center justify-center gap-2 active:scale-95 transition">
                         <span>ℹ️</span> 旅遊情報
                     </button>
-                    <button @click="hotelModalOpen = true" class="bg-morandi-gold text-white py-3 rounded-xl shadow-sm text-sm font-bold flex items-center justify-center gap-2 active:scale-95 transition">
+                    <button @click="hotelModalOpen = true" class="bg-morandi-gold text-white py-3.5 rounded-xl shadow-sm text-base font-bold flex items-center justify-center gap-2 active:scale-95 transition">
                         <span>🏨</span> VJW / 住宿
                     </button>
                 </div>
                 
-                <div class="mt-4 bg-red-50/90 border border-red-100 p-3 rounded-xl text-left text-xs text-gray-600 leading-relaxed">
-                    <p class="font-bold text-red-400 mb-1 flex items-center gap-1">⚠️ 必備物品</p>
-                    <ul class="list-disc pl-4 space-y-0.5">
-                        <li>防水外套、防水鞋/雪鞋 (可能會下雪)。</li>
-                        <li>保暖帽子、手套。</li>
-                        <li>行李配置：24寸行李箱 + 軟袋 (包車空間)。</li>
+                <div class="mt-6 bg-red-50/95 border border-red-100 p-4 rounded-xl text-left text-sm text-gray-700 leading-relaxed shadow-sm">
+                    <p class="font-extrabold text-red-500 mb-2 flex items-center gap-1 text-base">⚠️ 必備物品提醒</p>
+                    <ul class="list-disc pl-5 space-y-1 font-medium">
+                        <li>防水防風外套、防水鞋/雪鞋 (下雪機率很高)。</li>
+                        <li>保暖帽子、手套一定要帶。</li>
+                        <li>建議行李配置：24寸行李箱 + 軟袋/背包 (因包車空間有限)。</li>
                     </ul>
                 </div>
             </header>
 
-            <main class="mt-2">
+            <main class="mt-4">
                 <template x-for="(day, index) in itinerary" :key="index">
-                    <div class="border-b border-white/50">
+                    <div class="border-b border-white/60">
                         <div class="sticky-header cursor-pointer transition-all duration-300"
                              :class="day.headerBg"
                              @click="toggleDay(index, $el)">
-                            <div class="px-5 py-4 flex justify-between items-center border-l-[6px]" :class="day.borderColor">
+                            <div class="px-6 py-5 flex justify-between items-center border-l-[8px]" :class="day.borderColor">
                                 <div>
-                                    <span class="block text-xs font-bold tracking-widest opacity-60 text-gray-800" x-text="day.date"></span>
-                                    <span class="block text-lg font-bold text-gray-900" x-text="day.title"></span>
+                                    <span class="block text-sm font-bold tracking-widest opacity-70 text-gray-800" x-text="day.date"></span>
+                                    <span class="block text-xl font-extrabold text-gray-900 mt-1" x-text="day.title"></span>
                                 </div>
-                                <div class="w-8 h-8 rounded-full bg-white/30 flex items-center justify-center transition-transform duration-300" :class="{'rotate-180': activeDay === index}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                <div class="w-10 h-10 rounded-full bg-white/40 flex items-center justify-center transition-transform duration-300" :class="{'rotate-180': activeDay === index}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
                                     </svg>
                                 </div>
                             </div>
@@ -174,23 +175,23 @@
 
                         <div x-show="activeDay === index" 
                              x-collapse.duration.300ms
-                             class="bg-white/90">
-                            <div class="px-5 py-5 space-y-7">
+                             class="bg-white/95">
+                            <div class="px-6 py-6 space-y-8">
                                 <template x-for="item in day.events">
-                                    <div class="relative pl-5 border-l-2 border-dotted" :class="day.lineColor">
+                                    <div class="relative pl-6 border-l-2 border-dotted" :class="day.lineColor">
                                         <div class="absolute -left-[5px] top-1.5 w-2.5 h-2.5 rounded-full border-2 border-white" :class="day.dotColor"></div>
-                                        <div class="text-xs font-extrabold mb-1" :class="day.textColor" x-text="item.time"></div>
-                                        <h3 class="text-base font-bold text-gray-800 leading-snug" x-text="item.title"></h3>
-                                        <p x-show="item.desc" class="text-sm text-gray-600 mt-1.5 leading-relaxed" x-html="item.desc"></p>
+                                        <div class="text-sm font-extrabold mb-1" :class="day.textColor" x-text="item.time"></div>
+                                        <h3 class="text-lg font-bold text-gray-800 leading-snug" x-text="item.title"></h3>
+                                        <p x-show="item.desc" class="text-base text-gray-600 mt-2 leading-relaxed font-medium" x-html="item.desc"></p>
                                         
-                                        <div class="flex flex-wrap gap-2 mt-3" x-show="item.mapLink || (item.images && item.images.length)">
+                                        <div class="flex flex-wrap gap-3 mt-4" x-show="item.mapLink || (item.images && item.images.length)">
                                             <template x-if="item.mapLink">
-                                                <a :href="item.mapLink" target="_blank" class="inline-flex items-center gap-1 px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-medium text-gray-600 shadow-sm hover:bg-gray-50 active:scale-95 transition">
+                                                <a :href="item.mapLink" target="_blank" class="inline-flex items-center gap-1.5 px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm font-bold text-gray-700 shadow-sm hover:bg-gray-50 active:scale-95 transition">
                                                     📍 導航
                                                 </a>
                                             </template>
                                             <template x-if="item.images && item.images.length > 0">
-                                                <button @click="openImageModal(item.images)" class="inline-flex items-center gap-1 px-3 py-1.5 bg-gray-700 text-white rounded-lg text-xs font-medium shadow-sm hover:bg-gray-600 active:scale-95 transition">
+                                                <button @click="openImageModal(item.images)" class="inline-flex items-center gap-1.5 px-4 py-2 bg-gray-700 text-white rounded-lg text-sm font-bold shadow-sm hover:bg-gray-600 active:scale-95 transition">
                                                     📄 憑證
                                                 </button>
                                             </template>
@@ -205,8 +206,8 @@
         </div>
 
         <button @click="mapOpen = true" 
-                class="fixed bottom-8 right-4 w-14 h-14 bg-morandi-brown text-white rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.3)] flex items-center justify-center z-40 active:scale-90 transition border-2 border-white/50">
-            <span class="text-2xl drop-shadow-md">🗺️</span>
+                class="fixed bottom-10 right-5 w-16 h-16 bg-morandi-brown text-white rounded-full shadow-[0_4px_14px_rgba(0,0,0,0.3)] flex items-center justify-center z-40 active:scale-90 transition border-2 border-white/50">
+            <span class="text-3xl drop-shadow-md">🗺️</span>
         </button>
 
         <div x-cloak x-show="mapOpen" class="fixed inset-0 z-50 flex justify-end" role="dialog">
@@ -220,9 +221,11 @@
                  x-transition:leave="transition ease-in duration-300"
                  x-transition:leave-start="translate-x-0"
                  x-transition:leave-end="translate-x-full">
-                <div class="px-4 py-4 border-b bg-morandi-brownLight flex justify-between items-center shrink-0">
-                    <h2 class="text-lg font-bold text-gray-700">📍 行程總地圖</h2>
-                    <button @click="mapOpen = false" class="p-2 text-gray-500">✕</button>
+                <div class="px-5 py-5 border-b bg-morandi-brownLight flex justify-between items-center shrink-0">
+                    <h2 class="text-xl font-bold text-gray-800">📍 行程總地圖</h2>
+                    <button @click="mapOpen = false" class="p-2 text-gray-600 hover:text-gray-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                    </button>
                 </div>
                 <div class="flex-1 overflow-y-auto bg-gray-50 p-2 flex items-center justify-center">
                     <img src="overall_map.jpg" alt="Map" class="w-full h-auto rounded shadow-sm">
@@ -238,16 +241,16 @@
                  x-transition:enter-start="opacity-0 scale-90"
                  x-transition:enter-end="opacity-100 scale-100">
                  
-                <div class="p-3 border-b flex justify-between items-center bg-gray-50 shrink-0">
-                    <span class="text-sm font-bold text-gray-600">憑證檢視</span>
-                    <button @click="imageModalOpen = false" class="bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center text-gray-500 font-bold hover:bg-gray-300">✕</button>
+                <div class="p-4 border-b flex justify-between items-center bg-gray-50 shrink-0">
+                    <span class="text-lg font-bold text-gray-700">憑證檢視</span>
+                    <button @click="imageModalOpen = false" class="bg-gray-200 rounded-full w-10 h-10 flex items-center justify-center text-gray-600 font-bold hover:bg-gray-300">✕</button>
                 </div>
 
                 <div class="overflow-y-auto p-4 space-y-4 bg-gray-100 flex-1">
                     <template x-for="(img, idx) in currentImages" :key="idx">
                         <div class="bg-white p-2 rounded-lg shadow-sm">
                             <img :src="img" class="w-full h-auto rounded border border-gray-100">
-                            <div class="text-center text-xs text-gray-400 mt-2 font-mono">
+                            <div class="text-center text-sm text-gray-500 mt-3 font-medium">
                                 Page <span x-text="idx + 1"></span> / <span x-text="currentImages.length"></span>
                             </div>
                         </div>
@@ -264,31 +267,31 @@
                  x-transition:enter-start="opacity-0 scale-95"
                  x-transition:enter-end="opacity-100 scale-100">
                 
-                <div class="p-4 border-b bg-white flex justify-between items-center shrink-0">
-                    <h3 class="text-lg font-bold text-gray-800">住宿與 VJW</h3>
-                    <button @click="hotelModalOpen = false" class="text-gray-400 hover:text-gray-600 font-bold text-xl">✕</button>
+                <div class="p-5 border-b bg-white flex justify-between items-center shrink-0">
+                    <h3 class="text-xl font-bold text-gray-800">住宿與 VJW 資訊</h3>
+                    <button @click="hotelModalOpen = false" class="text-gray-400 hover:text-gray-600 font-bold text-2xl">✕</button>
                 </div>
 
-                <div class="overflow-y-auto p-5 space-y-4 flex-1">
-                    <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
-                        <p class="text-[10px] text-gray-400 font-bold uppercase">Postal Code</p>
-                        <div class="flex justify-between items-center mt-1">
-                            <span class="font-mono text-lg font-bold text-gray-700">9200981</span>
-                            <button @click="copyToClipboard('9200981')" class="text-xs bg-morandi-gold text-white px-3 py-1.5 rounded-lg font-bold active:scale-95">複製</button>
+                <div class="overflow-y-auto p-6 space-y-5 flex-1">
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                        <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Postal Code 郵遞區號</p>
+                        <div class="flex justify-between items-center mt-2">
+                            <span class="font-mono text-xl font-bold text-gray-800">9200981</span>
+                            <button @click="copyToClipboard('9200981')" class="text-sm bg-morandi-gold text-white px-4 py-2 rounded-lg font-bold active:scale-95 shadow-sm">複製</button>
                         </div>
                     </div>
-                    <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
-                        <p class="text-[10px] text-gray-400 font-bold uppercase">Address</p>
-                        <div class="flex justify-between items-start mt-1 gap-2">
-                            <p class="text-sm font-medium leading-tight text-gray-700">1 Chome-4-23 Katamachi</p>
-                            <button @click="copyToClipboard('1 Chome-4-23 Katamachi')" class="text-xs bg-morandi-gold text-white px-3 py-1.5 rounded-lg font-bold active:scale-95 shrink-0">複製</button>
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                        <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Address 地址</p>
+                        <div class="flex justify-between items-start mt-2 gap-3">
+                            <p class="text-base font-bold leading-tight text-gray-800">1 Chome-4-23 Katamachi</p>
+                            <button @click="copyToClipboard('1 Chome-4-23 Katamachi')" class="text-sm bg-morandi-gold text-white px-4 py-2 rounded-lg font-bold active:scale-95 shrink-0 shadow-sm">複製</button>
                         </div>
                     </div>
-                    <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
-                        <p class="text-[10px] text-gray-400 font-bold uppercase">Hotel Name</p>
-                        <div class="flex justify-between items-center mt-1">
-                            <p class="text-sm font-bold text-gray-700">OMO5 KANAZAWA</p>
-                            <button @click="copyToClipboard('OMO5 KANAZAWA KATAMACHI')" class="text-xs bg-morandi-gold text-white px-3 py-1.5 rounded-lg font-bold active:scale-95">複製</button>
+                    <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                        <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Hotel Name 飯店名稱</p>
+                        <div class="flex justify-between items-center mt-2">
+                            <p class="text-base font-bold text-gray-800">OMO5 KANAZAWA</p>
+                            <button @click="copyToClipboard('OMO5 KANAZAWA KATAMACHI')" class="text-sm bg-morandi-gold text-white px-4 py-2 rounded-lg font-bold active:scale-95 shadow-sm">複製</button>
                         </div>
                     </div>
                 </div>
@@ -303,29 +306,29 @@
                  x-transition:enter-start="opacity-0 scale-95"
                  x-transition:enter-end="opacity-100 scale-100">
                 
-                <div class="bg-morandi-green p-4 text-white text-center font-bold shrink-0 relative flex justify-center items-center">
-                    <span>❄️ 冬季情報 & 特產</span>
-                    <button @click="infoModalOpen = false" class="absolute right-4 text-white/80 hover:text-white font-bold text-xl">✕</button>
+                <div class="bg-morandi-green p-5 text-white text-center font-bold shrink-0 relative flex justify-center items-center">
+                    <span class="text-xl">❄️ 冬季情報 & 特產</span>
+                    <button @click="infoModalOpen = false" class="absolute right-5 text-white/80 hover:text-white font-bold text-2xl">✕</button>
                 </div>
                 
-                <div class="overflow-y-auto p-5 space-y-6 flex-1">
-                    <div class="pl-3 border-l-4 border-morandi-gold">
-                        <h4 class="font-bold text-lg text-gray-800">🦀 石川縣 (金澤)</h4>
-                        <p class="text-sm text-gray-600 mt-1 leading-relaxed">
-                            <span class="bg-orange-100 text-orange-800 px-1 rounded text-xs">美食</span> <b>加能蟹/香箱蟹</b>：冬季限定，肉質鮮甜。<br>
-                            <span class="bg-yellow-100 text-yellow-800 px-1 rounded text-xs">特產</span> <b>金箔</b>：金箔冰淇淋。<br>
-                            <span class="bg-blue-100 text-blue-800 px-1 rounded text-xs">景色</span> <b>兼六園雪吊</b>：冬季獨有美景。
+                <div class="overflow-y-auto p-6 space-y-8 flex-1">
+                    <div class="pl-4 border-l-[6px] border-morandi-gold">
+                        <h4 class="font-extrabold text-xl text-gray-800 mb-2">🦀 石川縣 (金澤)</h4>
+                        <p class="text-base text-gray-700 leading-relaxed font-medium">
+                            <span class="bg-orange-100 text-orange-800 px-1.5 py-0.5 rounded text-sm font-bold mr-1">美食</span> <b>加能蟹/香箱蟹</b>：冬季限定，肉質鮮甜。<br>
+                            <span class="bg-yellow-100 text-yellow-800 px-1.5 py-0.5 rounded text-sm font-bold mr-1 mt-2 inline-block">特產</span> <b>金箔</b>：金箔冰淇淋。<br>
+                            <span class="bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded text-sm font-bold mr-1 mt-2 inline-block">景色</span> <b>兼六園雪吊</b>：冬季獨有美景。
                         </p>
                     </div>
-                    <div class="pl-3 border-l-4 border-morandi-blue">
-                        <h4 class="font-bold text-lg text-gray-800">🦕 福井縣</h4>
-                        <p class="text-sm text-gray-600 mt-1 leading-relaxed">
-                            <span class="bg-orange-100 text-orange-800 px-1 rounded text-xs">美食</span> <b>越前蟹</b>：皇室貢品等級。<br>
-                            <span class="bg-gray-100 text-gray-800 px-1 rounded text-xs">特產</span> <b>眼鏡/羽二重餅</b>。<br>
-                            <span class="bg-green-100 text-green-800 px-1 rounded text-xs">景點</span> <b>恐龍博物館</b>。
+                    <div class="pl-4 border-l-[6px] border-morandi-blue">
+                        <h4 class="font-extrabold text-xl text-gray-800 mb-2">🦕 福井縣</h4>
+                        <p class="text-base text-gray-700 leading-relaxed font-medium">
+                            <span class="bg-orange-100 text-orange-800 px-1.5 py-0.5 rounded text-sm font-bold mr-1">美食</span> <b>越前蟹</b>：皇室貢品等級。<br>
+                            <span class="bg-gray-100 text-gray-800 px-1.5 py-0.5 rounded text-sm font-bold mr-1 mt-2 inline-block">特產</span> <b>羽二重餅、日本酒</b>。<br>
+                            <span class="bg-green-100 text-green-800 px-1.5 py-0.5 rounded text-sm font-bold mr-1 mt-2 inline-block">景點</span> <b>永平寺、恐龍博物館</b>。
                         </p>
                     </div>
-                    <div class="h-4"></div>
+                    <div class="h-6"></div>
                 </div>
             </div>
         </div>
@@ -419,7 +422,7 @@
                 itinerary: [
                     {
                         date: '02/18 (三)',
-                        title: 'Day 1 機場出發 & 溫泉',
+                        title: 'Day 1 機場出發～溫泉街散步',
                         headerBg: 'bg-morandi-greenLight',
                         borderColor: 'border-morandi-green',
                         lineColor: 'border-morandi-green',
@@ -431,9 +434,9 @@
                             { time: '10:25', title: '🛬 抵達小松機場', desc: '入境、提領行李' },
                             { time: '11:00', title: '小松機場出發', desc: '包車前往加賀 (憑證)', images: ['voucher_day1_car.jpg'] },
                             { time: '11:30', title: '加賀溫泉站', desc: '與肇軒集合', mapLink: 'https://www.google.com/maps/search/?api=1&query=加賀溫泉站' },
-                            { time: '13:00', title: '無限庵茶房 うるはし', desc: '下午茶。明治木造工藝典範。', mapLink: 'https://www.google.com/maps/search/?api=1&query=無限庵' },
-                            { time: '15:00', title: '山中溫泉街 & 鶴仙溪', desc: '北陸名湯，俳聖松尾芭蕉足跡。', mapLink: 'https://www.google.com/maps/search/?api=1&query=山中溫泉+鶴仙溪' },
-                            { time: '17:00', title: '住：加賀溫泉 - 無何有', desc: '含晚餐。米其林推薦，莊子理念設計。', mapLink: 'https://www.google.com/maps/search/?api=1&query=べにや無何有', images: ['voucher_day1_hotel.jpg'] }
+                            { time: '13:00', title: '無限庵茶房 うるはし', desc: '下午茶。原為加賀藩武家書院建築，明治末木造工藝典範，現做為茶房。', mapLink: 'https://www.google.com/maps/search/?api=1&query=無限庵' },
+                            { time: '15:00', title: '山中溫泉街 & 鶴仙溪', desc: '1300年歷史之北陸名湯。', mapLink: 'https://www.google.com/maps/search/?api=1&query=山中溫泉+鶴仙溪' },
+                            { time: '17:00', title: '住：加賀溫泉 - 無何有', desc: '含晚餐。米其林指南推薦溫泉旅館，建築以莊子「無何有之鄉」為設計理念，是融合現代和風與自然景觀的旅館。', mapLink: 'https://www.google.com/maps/search/?api=1&query=べにや無何有', images: ['voucher_day1_hotel.jpg'] }
                         ]
                     },
                     {
@@ -446,10 +449,10 @@
                         textColor: 'text-morandi-blue',
                         events: [
                             { time: '09:00', title: '早餐：飯店' },
-                            { time: '10:30', title: '永平寺', desc: '道元禪師創建，精進料理發祥地。', mapLink: 'https://www.google.com/maps/search/?api=1&query=永平寺' },
-                            { time: '12:30', title: '午餐：黑龍酒造 - acoya', desc: '知名清酒造，特色米飯點心。', mapLink: 'https://www.google.com/maps/search/?api=1&query=黑龍酒造+acoya', images: ['voucher_day2_lunch.jpg'] },
-                            { time: '15:00', title: '東尋坊', desc: '海浪侵蝕絕壁，壯觀地質景觀。', mapLink: 'https://www.google.com/maps/search/?api=1&query=東尋坊' },
-                            { time: '17:30', title: '住：瀧亭', desc: '含晚餐。犀川溫泉區，傳統庭園。', mapLink: 'https://www.google.com/maps/search/?api=1&query=金澤犀川溫泉+川端之湯宿+瀧亭', images: ['voucher_day2_hotel.jpg'] }
+                            { time: '10:30', title: '永平寺', desc: '1244 年創建，是日本精緻料理的發祥地。', mapLink: 'https://www.google.com/maps/search/?api=1&query=永平寺' },
+                            { time: '12:30', title: '午餐：黑龍酒造 - acoya', desc: '知名清酒酒造的餐廳，米飯料理與點心為其特色。', mapLink: 'https://www.google.com/maps/search/?api=1&query=黑龍酒造+acoya', images: ['voucher_day2_lunch.jpg'] },
+                            { time: '15:00', title: '東尋坊', desc: '海浪侵蝕絕壁，有著壯觀地質景觀。', mapLink: 'https://www.google.com/maps/search/?api=1&query=東尋坊' },
+                            { time: '17:30', title: '住：瀧亭', desc: '含晚餐。犀川溫泉區歷史溫泉旅館，以傳統庭園及加賀料理著稱。 ', mapLink: 'https://www.google.com/maps/search/?api=1&query=金澤犀川溫泉+川端之湯宿+瀧亭', images: ['voucher_day2_hotel.jpg'] }
                         ]
                     },
                     {
@@ -479,7 +482,7 @@
                         events: [
                             { time: '09:00', title: '早餐：飯店 / 合掌村散步' },
                             { time: '11:00', title: '回金澤市區' },
-                            { time: '13:00', title: '自由活動', desc: '肇軒前往兼六園 & 21世紀美術館' },
+                            { time: '13:00', title: '自由活動', desc: '肇軒可前往兼六園 & 21世紀美術館' },
                             { time: '16:00', title: '金澤散步導覽', desc: '45min，五人皆參加。飯店出發。' },
                             { time: '18:00', title: '金澤市區晚餐' },
                             { time: '20:00', title: '住：OMO5 金澤', desc: '片町', mapLink: 'https://www.google.com/maps/search/?api=1&query=OMO5+金澤片町', images: ['voucher_day4_hotel.jpg'] }
@@ -495,7 +498,7 @@
                         textColor: 'text-morandi-pink',
                         events: [
                             { time: '09:00', title: '21世紀美術館導覽', desc: '飯店出發 (45min, 不含肇軒品萱)', mapLink: 'https://www.google.com/maps/search/?api=1&query=金澤21世紀美術館' },
-                            { time: '10:00', title: '肇軒前往大阪', desc: '金澤站 > 敦賀 > 大阪' },
+                            { time: '10:00', title: '肇軒前往大阪', desc: '金澤站(北陸新幹線) > 敦賀(雷鳥號) > 大阪(機場快線)' },
                             { time: '18:00', title: '兼六園雪吊點燈', desc: '日本三大名園，江戶時代庭園。', mapLink: 'https://www.google.com/maps/search/?api=1&query=兼六園' },
                             { time: '19:30', title: '金澤市區晚餐' },
                             { time: '21:00', title: '住：OMO5 金澤' }
@@ -510,7 +513,7 @@
                         dotColor: 'bg-morandi-gray',
                         textColor: 'text-morandi-gray',
                         events: [
-                            { time: '09:00', title: '機場接送', desc: '待訂 (45min)' },
+                            { time: '09:00', title: '機場接送', desc: '45min車程' },
                             { time: '11:45', title: '✈️ 小松出發', desc: 'BR157 (14:35 抵達 TPE T2)' }
                         ]
                     }
